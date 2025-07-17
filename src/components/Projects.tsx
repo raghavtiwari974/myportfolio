@@ -4,6 +4,7 @@ import { ExternalLink, Github, Sparkles, Zap, Eye, X } from 'lucide-react';
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [activeTab, setActiveTab] = useState<'major' | 'minor'>('major');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -303,6 +304,178 @@ const Projects = () => {
     },
   ];
 
+  const Tabs = () => (
+    <div className="w-full">
+      <div className="flex justify-center gap-8 mt-6 mb-8">
+        <button
+          className={`relative px-6 py-2 text-lg font-bold transition-all duration-300 focus:outline-none border-2 rounded-full flex items-center gap-2 
+          ${activeTab === 'major' ? 'text-purple-400 scale-110 border-yellow-400 shadow-[0_0_12px_2px_rgba(255,215,0,0.4)] bg-gray-900' : 'text-gray-400 border-yellow-300 bg-gray-800'} animate-bounce`}
+          onClick={() => setActiveTab('major')}
+        >
+          <span className="relative z-10 flex items-center gap-1">
+            <Sparkles className="w-5 h-5 text-yellow-300" />
+            Major Projects
+          </span>
+        </button>
+        <button
+          className={`relative px-6 py-2 text-lg font-bold transition-all duration-300 focus:outline-none border-2 rounded-full flex items-center gap-2 
+          ${activeTab === 'minor' ? 'text-cyan-400 scale-110 border-cyan-400 shadow-[0_0_12px_2px_rgba(34,211,238,0.4)] bg-gray-900' : 'text-gray-400 border-cyan-300 bg-gray-800'} animate-bounce`}
+          onClick={() => setActiveTab('minor')}
+        >
+          <span className="relative z-10 flex items-center gap-1">
+            <Zap className="w-5 h-5 text-cyan-300" />
+            Minor Projects
+          </span>
+        </button>
+      </div>
+      <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] relative z-10">
+        {activeTab === 'major' ? (
+          <div className="mb-12 max-w-3xl mx-auto w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.filter(p => p.type === 'major').map((project) => (
+                <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:shadow-[0_0_32px_12px_rgba(255,215,0,0.18)] before:animate-pulse after:content-[''] after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:shadow-[inset_0_2px_24px_0_rgba(255,255,255,0.08)] p-4">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
+                        <Sparkles className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="flex gap-2">
+                        <a
+                          href={project.liveUrl}
+                          className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                        >
+                          <ExternalLink className="w-3 h-3 text-cyan-400" />
+                        </a>
+                        <a
+                          href={project.githubUrl}
+                          className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                        >
+                          <Github className="w-3 h-3 text-cyan-400" />
+                        </a>
+                      </div>
+                    </div>
+                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-400 mb-3 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                          <ExternalLink className="w-3 h-3" />
+                          {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                        </button>
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <button className="w-full border-2 border-cyan-500 text-cyan-500 px-3 py-2 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                          <Github className="w-3 h-3" />
+                          Code
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="max-w-3xl mx-auto w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {projects.filter(p => p.type === 'minor').map((project) => (
+                <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border-2 border-cyan-400 shadow-[0_0_12px_2px_rgba(34,211,238,0.2)] p-4 animate-slide-in-up">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
+                        <Sparkles className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="flex gap-1">
+                        <a
+                          href={project.liveUrl}
+                          className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                        >
+                          <ExternalLink className="w-3 h-3 text-cyan-400" />
+                        </a>
+                        <a
+                          href={project.githubUrl}
+                          className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                        >
+                          <Github className="w-3 h-3 text-cyan-400" />
+                        </a>
+                      </div>
+                    </div>
+                    <h4 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-400 mb-2 text-xs leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {project.technologies.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-2 py-1 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                          <ExternalLink className="w-3 h-3" />
+                          {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                        </button>
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <button className="w-full border-2 border-cyan-500 text-cyan-500 px-2 py-1 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                          <Github className="w-3 h-3" />
+                          Code
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Bottom Spacing */}
+      <div className="h-8 bg-gray-800/95 backdrop-blur-md"></div>
+    </div>
+  );
+
   return (
     <section id="projects-section" className="py-20 px-4 relative overflow-hidden">
       <div className="absolute inset-0">
@@ -445,152 +618,8 @@ const Projects = () => {
                   <X className="w-6 h-6 text-white" />
                 </button>
               </div>
-              <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)] relative z-10">
-                {/* Major Projects Modal Section */}
-                <div className="mb-12 max-w-3xl mx-auto w-full">
-                  <h4 className="text-xl font-bold text-purple-400 mb-6 text-center">Major Projects</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {projects.filter(p => p.type === 'major').map((project) => (
-                      <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:shadow-[0_0_32px_12px_rgba(255,215,0,0.18)] before:animate-pulse after:content-[''] after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:shadow-[inset_0_2px_24px_0_rgba(255,255,255,0.08)] p-4">
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
-                              <Sparkles className="w-5 h-5 text-white" />
-                            </div>
-                            <div className="flex gap-2">
-                              <a
-                                href={project.liveUrl}
-                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                              >
-                                <ExternalLink className="w-3 h-3 text-cyan-400" />
-                              </a>
-                              <a
-                                href={project.githubUrl}
-                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                              >
-                                <Github className="w-3 h-3 text-cyan-400" />
-                              </a>
-                            </div>
-                          </div>
-                          <h4 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                            {project.title}
-                          </h4>
-                          <p className="text-gray-400 mb-3 text-sm leading-relaxed">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.technologies.map((tech, i) => (
-                              <span
-                                key={i}
-                                className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="flex gap-2">
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1"
-                            >
-                              <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
-                                <ExternalLink className="w-3 h-3" />
-                                {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
-                              </button>
-                            </a>
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1"
-                            >
-                              <button className="w-full border-2 border-cyan-500 text-cyan-500 px-3 py-2 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
-                                <Github className="w-3 h-3" />
-                                Code
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Minor Projects Modal Section */}
-                <div className="max-w-3xl mx-auto w-full">
-                  <h4 className="text-xl font-bold text-cyan-400 mb-6 text-center">Minor Projects</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {projects.filter(p => p.type === 'minor').map((project) => (
-                      <div key={project.id} className="flex flex-col h-full group relative bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all duration-500 transform hover:scale-102 hover:-rotate-1 hover:shadow-xl p-3">
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
-                              <Sparkles className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="flex gap-1">
-                              <a
-                                href={project.liveUrl}
-                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                              >
-                                <ExternalLink className="w-3 h-3 text-cyan-400" />
-                              </a>
-                              <a
-                                href={project.githubUrl}
-                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                              >
-                                <Github className="w-3 h-3 text-cyan-400" />
-                              </a>
-                            </div>
-                          </div>
-                          <h4 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                            {project.title}
-                          </h4>
-                          <p className="text-gray-400 mb-2 text-xs leading-relaxed">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-1 mb-3">
-                            {project.technologies.map((tech, i) => (
-                              <span
-                                key={i}
-                                className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="flex gap-2">
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1"
-                            >
-                              <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-2 py-1 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
-                                <ExternalLink className="w-3 h-3" />
-                                {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
-                              </button>
-                            </a>
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1"
-                            >
-                              <button className="w-full border-2 border-cyan-500 text-cyan-500 px-2 py-1 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
-                                <Github className="w-3 h-3" />
-                                Code
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              {/* Bottom Spacing */}
-              <div className="h-8 bg-gray-800/95 backdrop-blur-md"></div>
+              {/* Tabs for Major and Minor Projects */}
+              <Tabs />
             </div>
           </div>
         )}
