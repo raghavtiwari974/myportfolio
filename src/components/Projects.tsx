@@ -238,11 +238,11 @@ const Projects = () => {
     },
     {
       id: 23,
-      title: 'Image Resizer',
-      description: 'Batch image resizing tool with multiple format support.',
-      technologies: ['Python', 'PIL', 'tkinter', 'os'],
-      liveUrl: '#',
-      githubUrl: '#',
+      title: ' Capture & Send Photo via Email',
+      description: 'This is a simple web app that allows users to capture a photo using their webcam and send it via email directly from the browser—no backend required. It uses HTML, CSS, JavaScript, the Canvas API for capturing the image, and EmailJS to send the captured photo as an embedded image in an email. When the user opens the app, it accesses their webcam, lets them capture a frame, and sends it using a pre-defined email template. The UI is clean, modern, and mobile-friendly. This project is ideal for quick photo feedback, online verification, or attendance with proof—perfect for learning frontend APIs and integrating third-party services without needing a server.',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'EmailJS'],
+      liveUrl: 'https://raghavtiwari974.github.io/auto-mail-photo/',
+      githubUrl: 'https://github.com/raghavtiwari974/auto-mail-photo',
       gradient: 'from-teal-400 via-cyan-500 to-blue-600',
       delay: 3600,
       type: 'minor',
@@ -259,13 +259,80 @@ const Projects = () => {
       type: 'major',
     },
     {
-      id: 11,
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce platform with user authentication, payment integration, and admin dashboard.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      id: 25,
+      title: 'Record & Send Video via Email',
+      description: "This web-based application allows users to record a video directly from their webcam, preview it, and then send the recorded video via email — all from within a browser. It's a lightweight, no-install tool perfect for quick video messages, feedback submissions, or even asynchronous team updates. Using the browser's media capabilities and EmailJS integration, it captures video and audio, encodes it into WebM format, and sends it via email without any backend server — keeping the architecture clean and fast to deploy.",
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      liveUrl: 'https://raghavtiwari974.github.io/video-mail/',
+      githubUrl: 'https://github.com/raghavtiwari974/video-mail',
+      gradient: 'from-pink-400 via-purple-500 to-indigo-600',
+      delay: 4000,
+      type: 'minor',
+    },
+    {
+      id: 26,
+      title: 'Send WhatsApp Message Instantly from Your Browser',
+      description: "This is a simple yet powerful web-based tool that allows users to send WhatsApp messages directly from a browser without saving the number. Whether you're reaching out to customers, sending reminders, or just messaging friends, this app lets you do it faster and smoother. You just type the recipient’s phone number (with country code) and your message, hit the button, and it opens WhatsApp with your message ready to send.It's a perfect lightweight tool for freelancers, marketers, or customer support agents who need a quick way to initiate WhatsApp chats.",
+      technologies: ['JavaScript', 'HTML', 'CSS', 'WhatsApp API'],
+      liveUrl: 'https://raghavtiwari974.github.io/whatsapp-msg-java/',
+      githubUrl: 'https://github.com/raghavtiwari974/whatsapp-msg-java',
+      gradient: 'from-green-400 via-blue-500 to-purple-600',
+      delay: 4200,
+      type: 'minor',
+    },
+    {
+      id: 27,
+      title: 'Smart Map App',
+      description: `The Smart Map App is a responsive, browser-based mini web application that integrates Google Maps and Geolocation API to offer three main features:\n\n📍 Show My Location: Detects the user’s current geographical coordinates using the browser’s geolocation and displays the location in an embedded Google Map.\n\n🧭 Show Route: Accepts a destination from the user and opens a Google Maps route from the user's current location to the destination in a new tab. A static preview of the destination is also shown in the iframe.\n\n🔍 Search Nearby: Lets users search for nearby places (like ATMs, cafes, gyms) based on their current location. The search results open in a new Google Maps tab with a fallback preview inside the app.\n\nThis app is ideal for lightweight travel, delivery, or local discovery needs. It demonstrates how simple HTML, CSS, and JavaScript can integrate powerful mapping services in a user-friendly UI.`,
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      liveUrl: 'https://raghavtiwari974.github.io/geo-store-location/',
+      githubUrl: 'https://github.com/raghavtiwari974/geo-store-location',
+      gradient: 'from-yellow-400 via-orange-500 to-red-600',
+      delay: 4400,
+      type: 'minor',
+    },
+    {
+      id: 28,
+      title: ' Smart Product Recommender',
+      description: "The Smart Product Recommender is a lightweight web-based application that intelligently tracks a user's product interactions and suggests relevant items based on their clicks. It mimics a basic recommender system commonly used in e-commerce platforms like Amazon or Flipkart.",
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      liveUrl: ' https://raghavtiwari974.github.io/viewcard/',
+      githubUrl: 'https://github.com/raghavtiwari974/viewcard',
+      gradient: 'from-blue-400 via-cyan-500 to-indigo-600',
+      delay: 4600,
+      type: 'minor',
+    },
+    {
+      id: 29,
+      title: 'Expense Tracker',
+      description: 'Track your daily expenses with this simple app. Add, edit, and delete transactions. Data is stored in local storage for persistence.',
+      technologies: ['JavaScript', 'HTML', 'CSS', 'LocalStorage'],
       liveUrl: '#',
       githubUrl: '#',
+      gradient: 'from-rose-400 via-pink-500 to-purple-600',
+      delay: 4800,
+      type: 'minor',
+    },
+   
+    {
+      id: 30,
+      title: ' IP & Location Finder Web App',
+      description: "The IP & Location Finder is a simple, interactive web tool that helps users instantly discover their public IP address and geographical location (city, region, and country) with just one click. This user-friendly application fetches real-time location data using an external API and displays it in a clean, minimal interface. It's perfect for quick IP lookups or educational demonstrations of how client-side JavaScript can work with public APIs. When the user clicks the 'Get IP & Location' button, the app sends a request to the ipapi.co service and displays the response details in a visually styled result box. The app handles both successful lookups and error scenarios gracefully.",
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      liveUrl: 'https://raghavtiwari974.github.io/IP_finder-location/',
+      githubUrl: 'https://github.com/raghavtiwari974/IP_finder-location',
       gradient: 'from-green-400 via-emerald-500 to-teal-600',
+      delay: 5000,
+      type: 'minor',
+    },
+     {
+      id: 11,
+      title: 'Pomodoro Timer',
+      description: 'A productivity timer app based on the Pomodoro Technique. Set work/break intervals, track completed sessions, and boost your focus.',
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-orange-400 via-yellow-500 to-red-600',
       delay: 2000,
       type: 'major',
     },
@@ -304,6 +371,12 @@ const Projects = () => {
     },
   ];
 
+  // Sort projects so that those with a real liveUrl (not '#' and not a LinkedIn post) appear first
+  const sortedProjects = [
+    ...projects.filter(p => p.liveUrl && p.liveUrl !== '#' && !p.liveUrl.includes('linkedin.com/posts/theraghavtiwari973')),
+    ...projects.filter(p => !p.liveUrl || p.liveUrl === '#' || p.liveUrl.includes('linkedin.com/posts/theraghavtiwari973')),
+  ];
+
   const Tabs = () => (
     <div className="w-full">
       <div className="flex justify-center gap-8 mt-6 mb-8">
@@ -332,7 +405,7 @@ const Projects = () => {
         {activeTab === 'major' ? (
           <div className="mb-12 max-w-3xl mx-auto w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {projects.filter(p => p.type === 'major').map((project) => (
+              {sortedProjects.filter(p => p.type === 'major').map((project) => (
                 <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:shadow-[0_0_32px_12px_rgba(255,215,0,0.18)] before:animate-pulse after:content-[''] after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:shadow-[inset_0_2px_24px_0_rgba(255,255,255,0.08)] p-4">
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-3">
@@ -402,7 +475,7 @@ const Projects = () => {
         ) : (
           <div className="max-w-3xl mx-auto w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {projects.filter(p => p.type === 'minor').map((project) => (
+              {sortedProjects.filter(p => p.type === 'minor').map((project) => (
                 <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border-2 border-cyan-400 shadow-[0_0_12px_2px_rgba(34,211,238,0.2)] p-4 animate-slide-in-up">
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-2">
@@ -498,7 +571,7 @@ const Projects = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
           {/* Major Projects - 3/5 width */}
           <div className="flex flex-col gap-8 md:col-span-3">
-            {projects.filter(p => p.type === 'major').slice(0, 2).map((project, index) => (
+            {sortedProjects.filter(p => p.type === 'major').slice(0, 2).map((project, index) => (
               <div
                 key={project.id}
                 className={`group relative bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 md:p-10 hover:bg-gray-800/90 transition-all duration-500 transform hover:scale-105 border-2 border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] max-w-full w-full self-start md:self-end animate-slide-in-up`}
@@ -546,7 +619,7 @@ const Projects = () => {
 
           {/* Minor Projects - 2/5 width */}
           <div className="flex flex-col gap-6 h-full justify-between items-end md:col-span-2">
-            {projects.filter(p => p.type === 'minor').slice(0, 2).map((project, index) => (
+            {sortedProjects.filter(p => p.type === 'minor').slice(0, 2).map((project, index) => (
               <div
                 key={project.id}
                 className={`group relative bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 md:p-10 transition-all duration-500 shadow-[0_0_32px_8px_rgba(0,255,255,0.15)] w-full animate-slide-in-up animate-float`}
