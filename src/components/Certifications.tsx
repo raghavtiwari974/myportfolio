@@ -24,6 +24,19 @@ const Certifications = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showModal]);
+
   const certifications = [
     {
       id: 1,
@@ -314,9 +327,9 @@ const Certifications = () => {
 
         {/* Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto">
-              <div className="p-6 border-b border-gray-700 flex justify-between items-center">
+          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-[99999] p-4">
+            <div className="bg-gray-800/95 backdrop-blur-md rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden shadow-2xl border border-gray-700 relative z-[99999]">
+              <div className="sticky top-0 bg-gray-800/95 backdrop-blur-md p-6 border-b border-gray-700 flex justify-between items-center z-10">
                 <h3 className="text-2xl font-bold text-white">All Certifications</h3>
                 <button
                   onClick={() => setShowModal(false)}
@@ -326,7 +339,7 @@ const Certifications = () => {
                 </button>
               </div>
               
-              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto max-h-[calc(80vh-120px)] relative z-10">
                 {certifications.map((cert) => (
                   <a
                     key={cert.id}
@@ -351,6 +364,9 @@ const Certifications = () => {
                   </a>
                 ))}
               </div>
+              
+              {/* Bottom Spacing */}
+              <div className="h-8 bg-gray-800/95 backdrop-blur-md"></div>
             </div>
           </div>
         )}

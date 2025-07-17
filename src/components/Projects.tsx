@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Github, Sparkles, Zap } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Zap, Eye, X } from 'lucide-react';
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,67 +23,284 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showModal]);
+
   const projects = [
     {
       id: 1,
-      title: 'Devops Automation',
+      title: 'Devops Automation using Python',
       description: 'Built a Python-based tool that automates cloning a GitHub repo, building a Docker image, pushing it to Docker Hub, and deploying it to Kubernetes—all in one click. Speeds up the CI/CD pipeline and reduces manual work.',
       technologies: ['Docker', 'GitHub', 'Kubernetes', 'Jenkins'],
       liveUrl: '#',
       githubUrl: 'https://github.com/raghavtiwari974/pymenu-',
       gradient: 'from-purple-400 via-pink-500 to-red-500',
-      delay: 0
+      delay: 0,
+      type: 'minor',
     },
     {
       id: 2,
       title: 'Senso AI',
       description: 'Developed an interactive emotional support chatbot using Python, OpenAI\'s Gemini API, and Gradio. The app responds to user feelings in natural language, styled with custom CSS and designed to offer a comforting user experience. Focused on mental well-being, it allows users to express emotions and receive AI-generated supportive replies in real time.',
       technologies: ['Python', 'Streamlit', 'GeminiAPI', 'Gradio'],
-      liveUrl: '#',
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-ai-llm-activity-7345169501778341889-49fz?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
       githubUrl: 'https://github.com/raghavtiwari974/senso',
       gradient: 'from-green-400 via-blue-500 to-purple-600',
-      delay: 200
+      delay: 200,
+      type: 'minor',
     },
     {
       id: 3,
       title: 'Python Email Sender',
       description: 'Built a lightweight Python tool that uses smtplib and MIME to send Gmail messages securely over TLS. The script prompts for subject and body at runtime, logs in with an app‑specific password, and delivers email in one click—perfect for quick notifications or transactional mail.',
       technologies: ['smtplib', 'MIMEText', 'MIMEMultipart'],
-      liveUrl: '#',
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-automation-smtp-activity-7347314438112219136-RNXn?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
       githubUrl: 'https://github.com/raghavtiwari974/mail',
       gradient: 'from-cyan-400 via-blue-500 to-indigo-600',
-      delay: 400
+      delay: 400,
+      type: 'minor',
     },
     {
       id: 4,
-      title: 'Data Visualization Dashboard',
-      description: 'Interactive dashboard for data analytics with real-time charts, filters, and export functionality.',
-      technologies: ['React', 'D3.js', 'Python', 'PostgreSQL'],
-      liveUrl: '#',
-      githubUrl: '#',
+      title: 'CI/CD Pipeline',
+      description: 'To enhance my DevOps skills and streamline development workflows, I designed and implemented a CI/CD pipeline using Jenkins — a powerful open-source automation server. This pipeline helps me deliver applications faster and more reliably by automating the entire software delivery process from code commit to production deployment.',
+      technologies: ['Git & GitHub', 'Jenkins', 'Docker', 'DockerHub','	Kubernetes'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_jenkins-redhat-linux-activity-7349869236627886083-VoOZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/CI-CD',
       gradient: 'from-orange-400 via-red-500 to-pink-500',
-      delay: 600
+      delay: 600,
+      type: 'major',
     },
     {
       id: 5,
-      title: 'Weather Forecast App',
-      description: 'Beautiful weather application with location-based forecasts, interactive maps, and weather alerts.',
-      technologies: ['React Native', 'OpenWeather API', 'Redux'],
+      title: 'Google Search Engine-Intelio',
+      description: "Intelio is a clean, privacy-first search engine interface built using Python and Streamlit. It fetches search results from DuckDuckGo and presents them in a modern, Google-style UI. The app supports searching the web, news, and images — all from one place. It's lightweight, fast, and doesn't track users. Perfect for anyone who wants a personal search dashboard without the clutter.",
+      technologies: ['Python', '	Streamlit (for UI)', '	DuckDuckGo HTML scraping','	requests'],
       liveUrl: '#',
-      githubUrl: '#',
+      githubUrl: 'https://github.com/raghavtiwari974/Search_Google',
       gradient: 'from-blue-400 via-cyan-500 to-teal-500',
-      delay: 800
+      delay: 800,
+      type: 'major',
     },
     {
       id: 6,
-      title: 'Portfolio Website',
-      description: 'This very portfolio website! Built with React, Tailwind CSS, and modern animations.',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
+      title: 'Dockerized Linear Regression',
+      description: 'This project demonstrates how to build and run a Linear Regression model using Python inside a Docker container. The main goal is to show how machine learning code can be packaged, deployed, and executed in a consistent environment — regardless of the underlying operating system. By containerizing the Linear Regression model, you ensure that all dependencies are installed, versions are fixed, and your code runs the same way everywhere — making it ideal for testing, deployment, or sharing your ML work.',
+      technologies: ['	Python3', 'numpy, pandas, sklearn, matplotlib', '	Docker','	Dockerfile','Linear Regression (from scikit-learn)'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_machinelearning-docker-python-activity-7351300513096794112-Jw4W?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/Linear-Regression-Model',
+      gradient: 'from-violet-400 via-purple-500 to-indigo-600',
+      delay: 1000,
+      type: 'major',
+    },
+    {
+      id: 7,
+      title: 'GUI programs in Linux',
+      description: 'To improve the graphical and terminal experience on Linux systems, I implemented a multi-environment setup by installing advanced terminal emulators and lightweight desktop environments. This setup is especially useful for developers and sysadmins who prefer a customizable, multi-terminal workflow and responsive GUIs.',
+      technologies: ['Tilix', 'KDE Plasma', 'Xfce Desktop'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_linux-opensource-sysadmin-activity-7348470953049280514-taLZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/-terminals_GUI_interfaces_Linux',
+      gradient: 'from-emerald-400 via-teal-500 to-cyan-600',
+      delay: 1200,
+      type: 'minor',
+    },
+    {
+      id: 8,
+      title: 'Change the logo or icon in Linux',
+      description: 'Linux applications use .desktop files to define how they appear in menus and launchers. I modified these files to replace default app icons with custom PNG images, giving a clean, personalized look to my GUI.This involved editing .desktop files (like appname.desktop) and updating the Icon path to point to my preferred image. The change reflects immediately across the desktop environment.',
+      technologies: ['nano', '	.desktop files in /usr/share/applications/', '.png, .svg'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_linux-opensource-customization-activity-7348750305032892418-HtW3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/change_icon_linux_app',
+      gradient: 'from-amber-400 via-orange-500 to-red-600',
+      delay: 1400,
+      type: 'minor',
+    },
+    {
+      id: 9,
+      title: 'Menu Driven Python Project',
+      description: 'SocialComm Automator – Unified Python CLI for Communication Developed a Python-based terminal app that automates email, SMS, WhatsApp, and social media communication through a single menu-driven interface. Modular, secure, and API-ready architecture allows integration with Twilio, Gmail, and major social platforms.',
+      technologies: ['Python', 'input(), print(), if-elif structure', 'Twilio API'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-automation-100daysofcode-activity-7348455845015232512-9f-t?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/menu-driven-Python-project-',
+      gradient: 'from-rose-400 via-pink-500 to-purple-600',
+      delay: 1600,
+      type: 'minor',
+    },
+    {
+      id: 10,
+      title: 'WhatsApp Message Using Python',
+      description: 'This project demonstrates how to send WhatsApp messages programmatically using Python and the Twilio API. By leveraging Twilio\'s official Python SDK, I built a simple script that authenticates with Twilio\'s messaging service and sends a WhatsApp message to a verified phone number. This solution is ideal for automated messaging systems, chatbots, notification services, or real-time alerts in enterprise and personal projects.',
+      technologies: ['	Twilio Programmable Messaging API', 'Python', '	twilio'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-whatsappapi-twilio-activity-7348448300619976704-u3M-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/automate-WhatsApp-',
+      gradient: 'from-indigo-400 via-purple-500 to-pink-600',
+      delay: 1800,
+      type: 'minor',
+    },
+    {
+      id: 15,
+      title: 'Automate Instagram ',
+      description: 'This project demonstrates how to automate Instagram content posting using Python and the official Meta (Facebook) Graph API. It allows uploading and publishing an image along with a caption directly to an Instagram Business account — all programmatically, without using the mobile app. By using a two-step process (media creation + publishing) and a long-lived access token, the script offers a scalable way to post branded content, scheduled campaigns, or automate marketing workflows via Instagram.',
+      technologies: ['Python', '	requests module', '	Meta Graph API v20.0', '	Long-Lived Instagram Access Token','	Publicly accessible image URL','time.sleep() to wait before publish'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-instagramapi-automation-activity-7348440767712935936-y9kQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/automate-Instagram',
+      gradient: 'from-blue-400 via-cyan-500 to-teal-600',
+      delay: 2000,
+      type: 'minor',
+    },
+    {
+      id: 16,
+      title: ' Send real-time SMS Messages using Python ',
+      description: 'This project demonstrates how to send real-time SMS messages using Python and the Twilio API. By securely authenticating with Twilio using your Account SID and Auth Token, the script allows a user to enter a custom message in the terminal and send it instantly to any mobile number. This solution is ideal for alert systems, 2FA (two-factor authentication), automated reminders, or customer communication pipelines.',
+      technologies: ['Python', 'Twilio Programmable SMS API', 'account_sid, auth_token (Twilio)', '	input() function (for message body)','	twilio.rest.Client'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-twilio-apis-activity-7348404118127788034-pf8I?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/sms',
+      gradient: 'from-green-400 via-emerald-500 to-teal-600',
+      delay: 2200,
+      type: 'minor',
+    },
+    {
+      id: 17,
+      title: 'Make a Phone Call Using Python & Twilio',
+      description: 'This Python project demonstrates how to initiate a phone call programmatically using the Twilio Voice API. With just a few lines of code, the script authenticates using Twilio credentials, dials a recipient’s phone number, and plays back audio using TwiML instructions hosted at a public URL. This functionality is ideal for automated voice notifications, appointment reminders, emergency alerts, or IVR (interactive voice response) systems.',
+      technologies: ['Python', 'Twilio Programmable Voice API', 'account_sid, auth_token', 'TwiML (Twilio Markup Language) via URL'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-twilio-voiceapi-activity-7348410570083090432-R8vS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/PhoneCall',
+      gradient: 'from-purple-400 via-violet-500 to-indigo-600',
+      delay: 2400,
+      type: 'minor',
+    },
+    {
+      id: 18,
+      title: 'LinkedIn automation script using Python',
+      description: 'Developed a Python application that uses OAuth 2.0 with a Flask callback server to retrieve access tokens for LinkedIn. This is the foundation for building social posting bots or integrating user content publishing features into custom platforms.',
+      technologies: ['Python', '	Flask (for handling OAuth callback)', 'LinkedIn REST API', 'requests module'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-linkedinapi-automation-activity-7348418095968866304-2JZj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/automate-linkedin-post',
+      gradient: 'from-orange-400 via-amber-500 to-yellow-600',
+      delay: 2600,
+      type: 'minor',
+    },
+    {
+      id: 19,
+      title: 'Automated Twitter Posting with Python',
+      description: 'This project demonstrates how to automate tweeting on Twitter (X) using Python and the Tweepy library, which is a Python wrapper for the Twitter API. The script authenticates using the OAuth 1.0a protocol and posts a tweet containing text and hashtags. This can be used for automated social media bots, daily updates, news broadcasters, or developer portfolio integrations.',
+      technologies: ['Python', 'Tweepy (Twitter API Wrapper)', '	Twitter API v1.1 (OAuth 1.0a)', '	api.update_status(tweet)'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-twitterapi-api-activity-7348425647771308032-3veK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/automate-Twitter-X-',
+      gradient: 'from-pink-400 via-rose-500 to-red-600',
+      delay: 2800,
+      type: 'minor',
+    },
+    {
+      id: 20,
+      title: 'Facebook Automation with Python',
+      description: 'This Python project demonstrates how to automatically post content to a Facebook Page using the Meta (Facebook) Graph API. With a valid Page Access Token, the script sends a POST request to the Facebook API to publish a custom message directly to the Page’s feed. This is ideal for businesses, marketers, or developers building content automation systems, scheduled publishing tools, or social media dashboards.',
+      technologies: ['Python', 'requests', 'Meta Graph API', '	Facebook Page Access Token'],
+      liveUrl: 'https://www.linkedin.com/posts/theraghavtiwari973_python-facebookapi-graphapi-activity-7348433195589128192-Hsj-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+      githubUrl: 'https://github.com/raghavtiwari974/automate-Facebook',
+      gradient: 'from-cyan-400 via-blue-500 to-indigo-600',
+      delay: 3000,
+      type: 'minor',
+    },
+    {
+      id: 21,
+      title: '  SnapShot – Camera Photo Capture & Save App',
+      description: "SnapShot is a simple and elegant web app that lets users capture photos using their device's camera directly from the browser — no installation needed. With a click, the app shows a live camera preview, takes a snapshot, and lets the user download the photo as a PNG file. It’s ideal for quick demos, ID photos, selfie stations, or adding image capture functionality to any website.",
+      technologies: ['	HTML5 + CSS3', 'JavaScript '],
+      liveUrl: 'https://raghavtiwari974.github.io/Photo_JavaScript/',
+      githubUrl: 'https://github.com/raghavtiwari974/Photo_JavaScript',
+      gradient: 'from-lime-400 via-green-500 to-emerald-600',
+      delay: 3200,
+      type: 'minor',
+    },
+    {
+      id: 22,
+      title: 'EasyMail – Contact Form with EmailJS',
+      description: "EasyMail is a clean, modern, and fully functional email contact form that sends messages directly to your inbox — without needing a backend server! It's powered by EmailJS, a service that connects frontend forms to email using secure APIs. This is perfect for portfolios, business sites, feedback forms, or any project where you need users to contact you — without setting up Node.js, PHP, or databases.",
+      technologies: ['	HTML5, CSS3', 'JavaScript ', '	EmailJS'],
+      liveUrl: 'https://raghavtiwari974.github.io/Auto_reply_mail/',
+      githubUrl: 'https://github.com/raghavtiwari974/Auto_reply_mail',
+      gradient: 'from-red-400 via-pink-500 to-purple-600',
+      delay: 3400,
+      type: 'minor',
+    },
+    {
+      id: 23,
+      title: 'Image Resizer',
+      description: 'Batch image resizing tool with multiple format support.',
+      technologies: ['Python', 'PIL', 'tkinter', 'os'],
       liveUrl: '#',
       githubUrl: '#',
-      gradient: 'from-violet-400 via-purple-500 to-indigo-600',
-      delay: 1000
-    }
+      gradient: 'from-teal-400 via-cyan-500 to-blue-600',
+      delay: 3600,
+      type: 'minor',
+    },
+    {
+      id: 24,
+      title: 'PDF Merger',
+      description: 'Simple PDF merger tool with drag-and-drop interface.',
+      technologies: ['Python', 'PyPDF2', 'tkinter', 'filedialog'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-amber-400 via-orange-500 to-red-600',
+      delay: 3800,
+      type: 'major',
+    },
+    {
+      id: 11,
+      title: 'E-Commerce Platform',
+      description: 'Full-stack e-commerce platform with user authentication, payment integration, and admin dashboard.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-green-400 via-emerald-500 to-teal-600',
+      delay: 2000,
+      type: 'major',
+    },
+    {
+      id: 12,
+      title: 'Social Media Dashboard',
+      description: 'Comprehensive social media management dashboard with analytics, scheduling, and content management.',
+      technologies: ['React', 'Firebase', 'Chart.js', 'Material-UI'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-blue-400 via-indigo-500 to-purple-600',
+      delay: 2200,
+      type: 'major',
+    },
+    {
+      id: 13,
+      title: 'AI Chat Application',
+      description: 'Real-time chat application with AI-powered responses and natural language processing capabilities.',
+      technologies: ['React', 'Socket.io', 'OpenAI API', 'Express'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-pink-400 via-rose-500 to-red-600',
+      delay: 2400,
+      type: 'major',
+    },
+    {
+      id: 14,
+      title: 'Project Management System',
+      description: 'Enterprise-level project management system with team collaboration, task tracking, and reporting.',
+      technologies: ['React', 'PostgreSQL', 'GraphQL', 'Docker'],
+      liveUrl: '#',
+      githubUrl: '#',
+      gradient: 'from-yellow-400 via-orange-500 to-red-600',
+      delay: 2600,
+      type: 'major',
+    },
   ];
 
   return (
@@ -103,103 +321,279 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`group relative bg-gray-800 rounded-2xl overflow-hidden hover:bg-gray-700 transition-all duration-500 transform hover:scale-105 hover:-rotate-1 ${
-                isVisible ? 'animate-slide-in-up' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${project.delay}ms` }}
-            >
-              {/* Animated disco effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-              <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}></div>
-              
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-10"></div>
-
-              <div className="relative z-10 p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
-                    <Sparkles className="w-6 h-6 text-white" />
+        {/* Two-column layout: Major (3/5) and Minor (2/5) */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          {/* Major Projects - 3/5 width */}
+          <div className="flex flex-col gap-8 md:col-span-3">
+            {projects.filter(p => p.type === 'major').slice(0, 2).map((project, index) => (
+              <div
+                key={project.id}
+                className={`group relative bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 md:p-10 hover:bg-gray-800/90 transition-all duration-500 transform hover:scale-105 border-2 border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] max-w-full w-full self-start md:self-end animate-slide-in-up`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"></div>
+                <div className="relative z-10 flex flex-col gap-4">
+                  <div className="flex items-center gap-4 mb-2">
+                    <div className="p-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full group-hover:scale-110 transition-transform duration-300">
+                      <Sparkles className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
+                      {project.title}
+                    </h3>
                   </div>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.liveUrl}
-                      className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                    >
-                      <ExternalLink className="w-4 h-4 text-cyan-400" />
+                  <p className="text-gray-400 mb-2 text-base leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-3 mb-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-4 py-2 bg-gray-700 text-gray-300 rounded-full text-sm font-medium hover:bg-gray-600 transition-colors duration-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-2 mt-auto">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1 lg:w-auto lg:flex-none">
+                      <button className="w-full lg:w-32 bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                        <ExternalLink className="w-3 h-3" />
+                        {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                      </button>
                     </a>
-                    <a
-                      href={project.githubUrl}
-                      className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
-                    >
-                      <Github className="w-4 h-4 text-cyan-400" />
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 lg:w-auto lg:flex-none">
+                      <button className="w-full lg:w-32 border-2 border-cyan-500 text-cyan-500 px-3 py-2 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                        <Github className="w-3 h-3" />
+                        Code
+                      </button>
                     </a>
                   </div>
                 </div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"></div>
+              </div>
+            ))}
+          </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-3">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1"
-                  >
-                    <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
-                      <ExternalLink className="w-4 h-4" />
-                      Live Project
-                    </button>
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1"
-                  >
-                    <button className="w-full border-2 border-cyan-500 text-cyan-500 px-4 py-2 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
-                      <Github className="w-4 h-4" />
-                      View Code
-                    </button>
-                  </a>
+          {/* Minor Projects - 2/5 width */}
+          <div className="flex flex-col gap-6 h-full justify-between items-end md:col-span-2">
+            {projects.filter(p => p.type === 'minor').slice(0, 2).map((project, index) => (
+              <div
+                key={project.id}
+                className={`group relative bg-gray-800/80 backdrop-blur-md rounded-2xl p-8 md:p-10 transition-all duration-500 shadow-[0_0_32px_8px_rgba(0,255,255,0.15)] w-full animate-slide-in-up animate-float`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="relative z-10 flex flex-col gap-4">
+                  <div className="flex items-center gap-4 mb-2">
+                    <div className={`p-4 bg-gradient-to-r ${project.gradient}`}>
+                      <Sparkles className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-300 mb-2 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-4 py-2 bg-gray-700 text-cyan-200 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-2 mt-auto">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-2 py-1 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                        <ExternalLink className="w-3 h-3" />
+                        {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                      </button>
+                    </a>
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <button className="w-full border-2 border-cyan-500 text-cyan-500 px-2 py-1 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                        <Github className="w-3 h-3" />
+                        Code
+                      </button>
+                    </a>
+                  </div>
                 </div>
               </div>
-
-              {/* Glowing border effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-sm`}></div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
+        {/* View More Button */}
         <div className="mt-16 text-center">
-          <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-semibold text-white hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+          <button
+            onClick={() => setShowModal(true)}
+            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-semibold text-white hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+          >
             <span className="relative z-10 flex items-center gap-2">
-              <Zap className="w-5 h-5" />
+              <Eye className="w-5 h-5" />
               View All Projects
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
           </button>
         </div>
+
+        {/* Modal for all projects (unchanged) */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-[99999] p-4">
+            <div className="bg-gray-800/95 backdrop-blur-md rounded-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-gray-700 relative z-[99999]">
+              <div className="sticky top-0 bg-gray-800/95 backdrop-blur-md p-6 border-b border-gray-700 flex justify-between items-center z-10">
+                <h3 className="text-2xl font-bold text-white">All Projects</h3>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="p-2 hover:bg-gray-700 rounded-full transition-colors duration-300"
+                >
+                  <X className="w-6 h-6 text-white" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)] relative z-10">
+                {/* Major Projects Modal Section */}
+                <div className="mb-12 max-w-3xl mx-auto w-full">
+                  <h4 className="text-xl font-bold text-purple-400 mb-6 text-center">Major Projects</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {projects.filter(p => p.type === 'major').map((project) => (
+                      <div key={project.id} className="flex flex-col h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border border-yellow-300 shadow-[0_0_16px_4px_rgba(255,215,0,0.3)] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:shadow-[0_0_32px_12px_rgba(255,215,0,0.18)] before:animate-pulse after:content-[''] after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:shadow-[inset_0_2px_24px_0_rgba(255,255,255,0.08)] p-4">
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
+                              <Sparkles className="w-5 h-5 text-white" />
+                            </div>
+                            <div className="flex gap-2">
+                              <a
+                                href={project.liveUrl}
+                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                              >
+                                <ExternalLink className="w-3 h-3 text-cyan-400" />
+                              </a>
+                              <a
+                                href={project.githubUrl}
+                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                              >
+                                <Github className="w-3 h-3 text-cyan-400" />
+                              </a>
+                            </div>
+                          </div>
+                          <h4 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                            {project.title}
+                          </h4>
+                          <p className="text-gray-400 mb-3 text-sm leading-relaxed">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.technologies.map((tech, i) => (
+                              <span
+                                key={i}
+                                className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex gap-2">
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                                <ExternalLink className="w-3 h-3" />
+                                {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                              </button>
+                            </a>
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <button className="w-full border-2 border-cyan-500 text-cyan-500 px-3 py-2 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-sm">
+                                <Github className="w-3 h-3" />
+                                Code
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Minor Projects Modal Section */}
+                <div className="max-w-3xl mx-auto w-full">
+                  <h4 className="text-xl font-bold text-cyan-400 mb-6 text-center">Minor Projects</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {projects.filter(p => p.type === 'minor').map((project) => (
+                      <div key={project.id} className="flex flex-col h-full group relative bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-700 transition-all duration-500 transform hover:scale-102 hover:-rotate-1 hover:shadow-xl p-3">
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className={`p-2 rounded-full bg-gradient-to-r ${project.gradient} group-hover:scale-110 transition-transform duration-300`}>
+                              <Sparkles className="w-4 h-4 text-white" />
+                            </div>
+                            <div className="flex gap-1">
+                              <a
+                                href={project.liveUrl}
+                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                              >
+                                <ExternalLink className="w-3 h-3 text-cyan-400" />
+                              </a>
+                              <a
+                                href={project.githubUrl}
+                                className="p-1 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 group-hover:scale-110"
+                              >
+                                <Github className="w-3 h-3 text-cyan-400" />
+                              </a>
+                            </div>
+                          </div>
+                          <h4 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                            {project.title}
+                          </h4>
+                          <p className="text-gray-400 mb-2 text-xs leading-relaxed">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            {project.technologies.map((tech, i) => (
+                              <span
+                                key={i}
+                                className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs font-medium hover:bg-gray-600 transition-colors duration-300"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex gap-2">
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-2 py-1 rounded-full font-medium hover:from-cyan-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                                <ExternalLink className="w-3 h-3" />
+                                {project.liveUrl === '#' || project.liveUrl.includes('linkedin.com/posts/theraghavtiwari973') ? 'Linkedin Post' : 'Live'}
+                              </button>
+                            </a>
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1"
+                            >
+                              <button className="w-full border-2 border-cyan-500 text-cyan-500 px-2 py-1 rounded-full font-medium hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-1 text-xs">
+                                <Github className="w-3 h-3" />
+                                Code
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {/* Bottom Spacing */}
+              <div className="h-8 bg-gray-800/95 backdrop-blur-md"></div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

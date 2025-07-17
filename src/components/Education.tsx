@@ -168,7 +168,7 @@ const GoldenDots = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-0">
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
       {dots.map((dot, i) => (
         <div
           key={i}
