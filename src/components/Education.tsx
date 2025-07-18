@@ -23,6 +23,22 @@ const Education = () => {
   }, []);
 
   const education = [
+
+    {
+      id: 2,
+      degree: 'Higher Secondary',
+      field: 'Commerce',
+      institution: 'Mastermind Convent School',
+      location: 'Sarangpur, India',
+      duration: '2021 - 2022',
+      // grade: 'Percentage: 92%',
+      achievements: [
+        'Science Olympiad Gold Medal',
+        'Mathematics Excellence Award',
+        'School Topper in Computer Science'
+      ],
+      delay: 300
+    },
     {
       id: 1,
       degree: 'Bachelor of Computer Applications',
@@ -39,19 +55,25 @@ const Education = () => {
       delay: 0
     },
     {
-      id: 2,
-      degree: 'Higher Secondary',
-      field: 'Commerce',
-      institution: 'Mastermind Convent School',
-      location: 'Sarangpur, India',
-      duration: '2021 - 2022',
-      // grade: 'Percentage: 92%',
+      id: 3,
+      degree: 'Arth 4.0 Learner',
+      field: 'ARTH - The School of Technologies · Internship',
+      institution: 'ARTH - The School of Technologies',
+      location: 'Remote',
+      duration: 'Sept 2023 - Aug 2024 · 12 month',
       achievements: [
-        'Science Olympiad Gold Medal',
-        'Mathematics Excellence Award',
-        'School Topper in Computer Science'
+        'C++',
+        'DevOps',
+        'Jenkins',
+        'Kubernetes',
+        'Ansible',
+        'Python (Programming Language)',
+        'Docker',
+        'Amazon Web Services (AWS)',
+        'Red Hat Linux',
+        'Web Development'
       ],
-      delay: 300
+      delay: 600
     }
   ];
 
