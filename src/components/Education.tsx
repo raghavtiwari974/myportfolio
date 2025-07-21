@@ -58,7 +58,7 @@ const Education = () => {
       id: 3,
       degree: 'Arth 4.0 Learner',
       field: 'ARTH - The School of Technologies · Internship',
-      institution: 'ARTH - The School of Technologies',
+      institution: 'LinuxWorld Informatics Pvt Ltd',
       location: 'Remote',
       duration: 'Sept 2023 - Aug 2024 · 12 month',
       achievements: [
