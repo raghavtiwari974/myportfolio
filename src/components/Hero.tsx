@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, MapPin, Code, Zap, Instagram } from 'lucide-react';
-import profileImg from './img2.jpg';
+import profileImg from './img.jpg';
 import './hero-glow.css';
 
 // Animated Floating Holographic Cube Effect
