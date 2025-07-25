@@ -254,3 +254,88 @@ p, h1, h2, h3, h4, h5, h6 {
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+/* Fizzy Download Button Animation */
+.fizzy-download-btn {
+  position: relative;
+  overflow: visible;
+}
+.fizzy-download-btn .particle {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.7s;
+  z-index: 1;
+}
+.fizzy-download-btn:hover .particle,
+.fizzy-download-btn:focus .particle {
+  opacity: 0.7;
+  animation: fizzy-burst 0.7s cubic-bezier(0.39, 2.01, 0.27, 0.75) forwards;
+}
+/* Each particle gets a unique direction */
+.fizzy-download-btn .particle-0  { transform: translate(0, 0);  animation-delay: 0s; }
+.fizzy-download-btn .particle-1  { transform: translate(0, 0);  animation-delay: 0.02s; }
+.fizzy-download-btn .particle-2  { transform: translate(0, 0);  animation-delay: 0.04s; }
+.fizzy-download-btn .particle-3  { transform: translate(0, 0);  animation-delay: 0.06s; }
+.fizzy-download-btn .particle-4  { transform: translate(0, 0);  animation-delay: 0.08s; }
+.fizzy-download-btn .particle-5  { transform: translate(0, 0);  animation-delay: 0.10s; }
+.fizzy-download-btn .particle-6  { transform: translate(0, 0);  animation-delay: 0.12s; }
+.fizzy-download-btn .particle-7  { transform: translate(0, 0);  animation-delay: 0.14s; }
+.fizzy-download-btn .particle-8  { transform: translate(0, 0);  animation-delay: 0.16s; }
+.fizzy-download-btn .particle-9  { transform: translate(0, 0);  animation-delay: 0.18s; }
+.fizzy-download-btn .particle-10 { transform: translate(0, 0);  animation-delay: 0.20s; }
+.fizzy-download-btn .particle-11 { transform: translate(0, 0);  animation-delay: 0.22s; }
+.fizzy-download-btn .particle-12 { transform: translate(0, 0);  animation-delay: 0.24s; }
+.fizzy-download-btn .particle-13 { transform: translate(0, 0);  animation-delay: 0.26s; }
+.fizzy-download-btn .particle-14 { transform: translate(0, 0);  animation-delay: 0.28s; }
+.fizzy-download-btn .particle-15 { transform: translate(0, 0);  animation-delay: 0.30s; }
+.fizzy-download-btn .particle-16 { transform: translate(0, 0);  animation-delay: 0.32s; }
+.fizzy-download-btn .particle-17 { transform: translate(0, 0);  animation-delay: 0.34s; }
+.fizzy-download-btn .particle-18 { transform: translate(0, 0);  animation-delay: 0.36s; }
+.fizzy-download-btn .particle-19 { transform: translate(0, 0);  animation-delay: 0.38s; }
+.fizzy-download-btn .particle-20 { transform: translate(0, 0);  animation-delay: 0.40s; }
+.fizzy-download-btn .particle-21 { transform: translate(0, 0);  animation-delay: 0.42s; }
+.fizzy-download-btn .particle-22 { transform: translate(0, 0);  animation-delay: 0.44s; }
+.fizzy-download-btn .particle-23 { transform: translate(0, 0);  animation-delay: 0.46s; }
+
+@keyframes fizzy-burst {
+  0% {
+    opacity: 0.7;
+    transform: translate(0, 0) scale(1);
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    /* Each particle flies out in a unique direction */
+    /* We'll use nth-child in JS/TSX to set unique directions, but here's a fallback: */
+    transform: translate(var(--fizzy-x, 0px), var(--fizzy-y, -40px)) scale(0.7);
+  }
+}
+/* Custom properties for each particle direction (set via inline style in TSX if desired) */
+.fizzy-download-btn .particle-0  { --fizzy-x: 0px;   --fizzy-y: -40px; }
+.fizzy-download-btn .particle-1  { --fizzy-x: 20px;  --fizzy-y: -38px; }
+.fizzy-download-btn .particle-2  { --fizzy-x: 35px;  --fizzy-y: -30px; }
+.fizzy-download-btn .particle-3  { --fizzy-x: 40px;  --fizzy-y: -10px; }
+.fizzy-download-btn .particle-4  { --fizzy-x: 38px;  --fizzy-y: 10px; }
+.fizzy-download-btn .particle-5  { --fizzy-x: 30px;  --fizzy-y: 30px; }
+.fizzy-download-btn .particle-6  { --fizzy-x: 10px;  --fizzy-y: 40px; }
+.fizzy-download-btn .particle-7  { --fizzy-x: -10px; --fizzy-y: 40px; }
+.fizzy-download-btn .particle-8  { --fizzy-x: -30px; --fizzy-y: 30px; }
+.fizzy-download-btn .particle-9  { --fizzy-x: -38px; --fizzy-y: 10px; }
+.fizzy-download-btn .particle-10 { --fizzy-x: -40px; --fizzy-y: -10px; }
+.fizzy-download-btn .particle-11 { --fizzy-x: -35px; --fizzy-y: -30px; }
+.fizzy-download-btn .particle-12 { --fizzy-x: -20px; --fizzy-y: -38px; }
+.fizzy-download-btn .particle-13 { --fizzy-x: 10px;  --fizzy-y: -30px; }
+.fizzy-download-btn .particle-14 { --fizzy-x: 25px;  --fizzy-y: -20px; }
+.fizzy-download-btn .particle-15 { --fizzy-x: 30px;  --fizzy-y: 10px; }
+.fizzy-download-btn .particle-16 { --fizzy-x: 20px;  --fizzy-y: 30px; }
+.fizzy-download-btn .particle-17 { --fizzy-x: -10px; --fizzy-y: 30px; }
+.fizzy-download-btn .particle-18 { --fizzy-x: -25px; --fizzy-y: 20px; }
+.fizzy-download-btn .particle-19 { --fizzy-x: -30px; --fizzy-y: -10px; }
+.fizzy-download-btn .particle-20 { --fizzy-x: -20px; --fizzy-y: -30px; }
+.fizzy-download-btn .particle-21 { --fizzy-x: 0px;   --fizzy-y: -20px; }
+.fizzy-download-btn .particle-22 { --fizzy-x: 15px;  --fizzy-y: 15px; }
+.fizzy-download-btn .particle-23 { --fizzy-x: -15px; --fizzy-y: 15px; }

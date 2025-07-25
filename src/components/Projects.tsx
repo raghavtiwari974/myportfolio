@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Github, Sparkles, Zap, Eye, X } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Zap, Eye, X, BookOpen, MoreHorizontal } from 'lucide-react';
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [activeTab, setActiveTab] = useState<'major' | 'minor'>('major');
+  const [activeTab, setActiveTab] = useState<'major' | 'minor' | 'blogs'>('major');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -377,6 +377,35 @@ const Projects = () => {
     ...projects.filter(p => !p.liveUrl || p.liveUrl === '#' || p.liveUrl.includes('linkedin.com/posts/theraghavtiwari973')),
   ];
 
+  // Sample blogs array for the Blogs tab
+  const blogs = [
+    {
+      id: 1,
+      title: 'Why Linux Powers Google, NASA & the Future of Tech ',
+      description: 'From Google to NASA, top organizations rely on Linux for its cost-efficiency, unmatched security, customizability, and rock-solid performance. Whether managing data centers or powering rockets, Linux scales with the future.',
+      url: 'https://www.linkedin.com/posts/theraghavtiwari973_raghavtiwari974-activity-7348463398738718722-3yT-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+    },
+    {
+      id: 2,
+      title: 'LLaMA 3 vs DeepSeek V2: Real-World LLM Battle Tested ',
+      description: 'I compared Meta’s LLaMA 3 and Alibaba’s DeepSeek V2 on cloud (AWS & Alibaba Cloud) across real-world topics like CRISPR, edge AI, and ISRO. LLaMA impressed with deep reasoning, while DeepSeek excelled in speed and summaries. Both were run with vLLM for optimized inference.',
+      url: 'https://www.linkedin.com/posts/theraghavtiwari973_llama-vs-deepseek-llm-activity-7350758674010689537-l5NG?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+    },
+    {
+      id: 3,
+      title: 'LLaMA 3 vs DeepSeek V2 – Real-World LLM Face-Off!',
+      description: 'I compared Meta’s LLaMA 3 and Alibaba’s DeepSeek V2 on real-world prompts (like edge AI, philosophy, and ISRO) using cloud GPUs and vLLM. LLaMA 3 shined in reasoning, while DeepSeek delivered fast, clear answers. Dive into my full blog for insights, comparisons, and real outputs.',
+      url: 'https://www.linkedin.com/posts/theraghavtiwari973_deploy-both-models-activity-7350766103784026112-m8WL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA',
+    },
+    {
+      id: 4,
+      title: ' LLaMA 3 vs DeepSeek — Which LLM Truly Understands Topics Better?',
+      description: 'I put Meta’s LLaMA 3 and Alibaba’s DeepSeek V2 head-to-head on real-world topics — from AI and philosophy to tech news. Both ran on cloud GPUs with vLLM for speed. LLaMA 3 stood out for deep, structured answers. DeepSeek delivered faster, concise summaries. Full results in the blog!',
+      url: 'https://www.linkedin.com/posts/theraghavtiwari973_raghavtiwari974-activity-7350773634543595521-clj1?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD5_Q10BfGfpFq_Z0Vm1pXSwxJ7evCazSIA'
+    },
+     
+  ];
+
   const Tabs = () => (
     <div className="w-full">
       <div className="flex justify-center gap-8 mt-6 mb-8">
@@ -398,6 +427,16 @@ const Projects = () => {
           <span className="relative z-10 flex items-center gap-1">
             <Zap className="w-5 h-5 text-cyan-300" />
             Minor Projects
+          </span>
+        </button>
+        <button
+          className={`relative px-6 py-2 text-lg font-bold transition-all duration-300 focus:outline-none border-2 rounded-full flex items-center gap-2 
+          ${activeTab === 'blogs' ? 'text-white scale-110 border-white shadow-[0_0_12px_2px_rgba(255,255,255,0.4)] bg-gray-900' : 'text-gray-400 border-white/40 bg-gray-800'} animate-bounce`}
+          onClick={() => setActiveTab('blogs')}
+        >
+          <span className="relative z-10 flex items-center gap-1">
+            <span className="w-5 h-5 text-pink-300 font-bold">📝</span>
+            Blogs
           </span>
         </button>
       </div>
@@ -472,7 +511,7 @@ const Projects = () => {
               ))}
             </div>
           </div>
-        ) : (
+        ) : activeTab === 'minor' ? (
           <div className="max-w-3xl mx-auto w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sortedProjects.filter(p => p.type === 'minor').map((project) => (
@@ -537,6 +576,41 @@ const Projects = () => {
                         </button>
                       </a>
                     </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center min-h-[300px] text-center">
+            <div className="flex flex-col gap-6 w-full max-w-3xl mx-auto mb-10">
+              {blogs.map(blog => (
+                <div
+                  key={blog.id}
+                  className="flex h-full group relative bg-gray-900/80 backdrop-blur-md rounded-xl overflow-hidden hover:bg-gray-900/90 transition-all duration-500 transform hover:scale-105 border border-white shadow-[0_0_16px_4px_rgba(255,255,255,0.3)] before:content-[''] before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:shadow-[0_0_32px_12px_rgba(255,255,255,0.18)] before:animate-pulse after:content-[''] after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:shadow-[inset_0_2px_24px_0_rgba(255,255,255,0.08)] p-4 cursor-pointer text-left"
+                  onClick={() => window.open(blog.url, '_blank', 'noopener,noreferrer')}
+                  tabIndex={0}
+                  role="button"
+                  onKeyPress={e => { if (e.key === 'Enter') window.open(blog.url, '_blank', 'noopener,noreferrer'); }}
+                >
+                  <div className="flex-1 flex flex-col justify-center">
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="p-2 rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 group-hover:scale-110 transition-transform duration-300">
+                        <BookOpen className="w-5 h-5 text-white" />
+                      </span>
+                      <h4 className="text-lg font-bold text-white group-hover:text-yellow-300 transition-colors duration-300">
+                        {blog.title}
+                      </h4>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-2">{blog.description}</p>
+                  </div>
+                  <div className="flex items-center ml-6">
+                    <button
+                      className="px-4 py-2 border border-white rounded-full text-white text-xs font-semibold hover:bg-white hover:text-gray-900 transition-colors duration-200"
+                      onClick={e => { e.stopPropagation(); window.open(blog.url, '_blank', 'noopener,noreferrer'); }}
+                    >
+                      Read Blog →
+                    </button>
                   </div>
                 </div>
               ))}
