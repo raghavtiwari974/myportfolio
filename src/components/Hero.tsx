@@ -241,10 +241,14 @@ const Hero = () => {
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
             </button>
-            <button className="group relative px-8 py-4 border-2 border-cyan-500 rounded-full font-semibold text-cyan-500 hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105">
+            <a
+              href="/Raghav_Tiwari_CV.pdf.pdf"
+              download
+              className="group relative px-8 py-4 border-2 border-cyan-500 rounded-full font-semibold text-cyan-500 hover:bg-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+            >
               <span className="relative z-10">Download Resume</span>
               <div className="absolute inset-0 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
