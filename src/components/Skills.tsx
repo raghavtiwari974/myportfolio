@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code, Database, Server, Globe, Zap, Cpu } from 'lucide-react';
+import { Code, Container, Workflow, Ship, Github, Flame } from 'lucide-react';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,12 +23,12 @@ const Skills = () => {
   }, []);
 
   const skills = [
-    { name: 'Python', level: 'Expert', icon: Code, color: 'from-green-400 to-blue-500', delay: 0 },
-    { name: 'Docker', level: 'Expert', icon: Globe, color: 'from-yellow-400 to-orange-500', delay: 200 },
-    { name: 'Jenkins', level: 'Expert', icon: Zap, color: 'from-cyan-400 to-blue-500', delay: 400 },
-    { name: 'kubernetes', level: 'Advanced', icon: Server, color: 'from-green-400 to-emerald-500', delay: 600 },
-    { name: 'GitHub', level: 'Advanced', icon: Database, color: 'from-purple-400 to-pink-500', delay: 800 },
-    { name: 'Firebase', level: 'Advanced', icon: Cpu, color: 'from-red-400 to-pink-500', delay: 1000 },
+    { name: 'Python', level: 'Expert', icon: Code, color: 'from-blue-400 to-yellow-500', delay: 0 },
+    { name: 'Docker', level: 'Expert', icon: Container, color: 'from-blue-400 to-cyan-500', delay: 200 },
+    { name: 'Jenkins', level: 'Expert', icon: Workflow, color: 'from-gray-500 to-red-500', delay: 400 },
+    { name: 'Kubernetes', level: 'Advanced', icon: Ship, color: 'from-blue-500 to-indigo-600', delay: 600 },
+    { name: 'GitHub', level: 'Advanced', icon: Github, color: 'from-gray-700 to-gray-900', delay: 800 },
+    { name: 'Firebase', level: 'Advanced', icon: Flame, color: 'from-yellow-400 to-orange-500', delay: 1000 },
   ];
 
   return (
@@ -46,7 +46,7 @@ const Skills = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill, index) => {
+          {skills.map((skill) => {
             const Icon = skill.icon;
             return (
               <div
@@ -63,7 +63,7 @@ const Skills = () => {
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-2xl font-semibold text-white mb-3">{skill.name}</h3>
+                  <h3 className="text-2xl font-semibold text-white mb-3 capitalize">{skill.name}</h3>
                   <span className="px-4 py-1 rounded-full bg-gradient-to-r from-cyan-400/20 to-purple-500/20 text-white text-sm font-medium">
                     {skill.level}
                   </span>
