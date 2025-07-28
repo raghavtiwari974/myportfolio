@@ -24,11 +24,11 @@ const Skills = () => {
 
   const skills = [
     { name: 'Python', level: 'Expert', icon: Code, color: 'from-green-400 to-blue-500', delay: 0 },
-    { name: 'JavaScript', level: 'Expert', icon: Globe, color: 'from-yellow-400 to-orange-500', delay: 200 },
-    { name: 'React', level: 'Expert', icon: Zap, color: 'from-cyan-400 to-blue-500', delay: 400 },
-    { name: 'Node.js', level: 'Advanced', icon: Server, color: 'from-green-400 to-emerald-500', delay: 600 },
-    { name: 'Database', level: 'Advanced', icon: Database, color: 'from-purple-400 to-pink-500', delay: 800 },
-    { name: 'DevOps', level: 'Advanced', icon: Cpu, color: 'from-red-400 to-pink-500', delay: 1000 },
+    { name: 'Docker', level: 'Expert', icon: Globe, color: 'from-yellow-400 to-orange-500', delay: 200 },
+    { name: 'Jenkins', level: 'Expert', icon: Zap, color: 'from-cyan-400 to-blue-500', delay: 400 },
+    { name: 'kubernetes', level: 'Advanced', icon: Server, color: 'from-green-400 to-emerald-500', delay: 600 },
+    { name: 'GitHub', level: 'Advanced', icon: Database, color: 'from-purple-400 to-pink-500', delay: 800 },
+    { name: 'Firebase', level: 'Advanced', icon: Cpu, color: 'from-red-400 to-pink-500', delay: 1000 },
   ];
 
   return (
