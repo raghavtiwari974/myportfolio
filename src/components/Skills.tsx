@@ -23,12 +23,12 @@ const Skills = () => {
   }, []);
 
   const skills = [
-    { name: 'Python', level: 'Expert', icon: Code, color: 'from-blue-400 to-yellow-500', delay: 0 },
-    { name: 'Docker', level: 'Expert', icon: Container, color: 'from-blue-400 to-cyan-500', delay: 200 },
-    { name: 'Jenkins', level: 'Expert', icon: Workflow, color: 'from-gray-500 to-red-500', delay: 400 },
-    { name: 'Kubernetes', level: 'Advanced', icon: Ship, color: 'from-blue-500 to-indigo-600', delay: 600 },
-    { name: 'GitHub', level: 'Advanced', icon: Github, color: 'from-gray-700 to-gray-900', delay: 800 },
-    { name: 'Firebase', level: 'Advanced', icon: Flame, color: 'from-yellow-400 to-orange-500', delay: 1000 },
+    { name: 'Python', level: '', icon: Code, color: 'from-blue-400 to-yellow-500', delay: 0 },
+    { name: 'Docker', level: '', icon: Container, color: 'from-blue-400 to-cyan-500', delay: 200 },
+    { name: 'Jenkins', level: '', icon: Workflow, color: 'from-gray-500 to-red-500', delay: 400 },
+    { name: 'Kubernetes', level: '', icon: Ship, color: 'from-blue-500 to-indigo-600', delay: 600 },
+    { name: 'GitHub', level: '', icon: Github, color: 'from-gray-700 to-gray-900', delay: 800 },
+    { name: 'Firebase', level: '', icon: Flame, color: 'from-yellow-400 to-orange-500', delay: 1000 },
   ];
 
   return (
