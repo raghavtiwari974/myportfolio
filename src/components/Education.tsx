@@ -45,7 +45,7 @@ const Education = () => {
       field: 'Computer Science Engineering',
       institution: 'Renaissance University',
       location: 'Indore, India',
-      duration: '2022 - 20225',
+      duration: '2022 - 2025',
       // grade: 'CGPA: 8.5/10',
       achievements: [
         'Dean\'s List for Academic Excellence',
